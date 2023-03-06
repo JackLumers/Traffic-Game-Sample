@@ -9,7 +9,7 @@
                     "name": "Press",
                     "type": "Value",
                     "id": "405c9bb5-0f48-4c68-84fd-95dd467066d9",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
