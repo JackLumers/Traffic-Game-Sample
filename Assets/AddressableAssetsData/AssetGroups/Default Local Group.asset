@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 0eff65ee502bd0145851f2c1549b70af
+  m_SerializeEntries:
+  - m_GUID: 900b786bedb3d514797c5a32a840dad3
+    m_Address: LevelView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a65aaaa792fd1a84097b440f654a5c51
+    m_Address: MainMenuView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 50363992870c8064a821e8feb3c3b34f
+    m_Address: CarView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 74df6e475ca88ef40b9c60576b25e991
+    m_Address: TrafficLightView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9e0d7eaa47e928e438e2f0d03c35845e
+    m_Address: GameOverScreenWinView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: df522ae10895d3445bd73f4e58bf9aec
+    m_Address: GameOverScreenDefeatView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 9be049a0b52890a40b7d9940dc41e919, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 09049475cd224dc4289fe920601f3651, type: 2}
+    - {fileID: 11400000, guid: b4d03d65dad225f44bb826fce1b39832, type: 2}
