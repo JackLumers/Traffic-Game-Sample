@@ -3,7 +3,7 @@ Test task game sample using MVP pattern, UniTasks and Addressable assets.
 
 # Project installation:
 - Clone git repo => Enter playmode from **TrafficGameScene**.
-- To delete save file go to **TrafficGame/ScriptableObjects/LevelModel** and choose **Delete Save** in context menu. Also choose **Reset** if you need to reset values to default.
+- To delete save file go to **TrafficGame/ScriptableObjects/LevelModel** and click **Delete Save** from the context menu. Also click **Reset** if you need to reset values to default.
 
 # Known bugs:
 - Cars can be spawned on top of each other after save load.
