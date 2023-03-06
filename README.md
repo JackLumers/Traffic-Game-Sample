@@ -1,5 +1,5 @@
 # Traffic-Game-Sample
-Test task game sample using MVP pattern, UniTasks and Addressable assets.
+A 3d game sample that was made as a test task project.
 
 # Project installation:
 - Clone git repo => Enter playmode from **TrafficGameScene**.
