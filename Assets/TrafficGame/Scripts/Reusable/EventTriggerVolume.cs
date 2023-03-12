@@ -16,8 +16,6 @@ namespace TrafficGame.Scripts.Reusable
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log(_objectsInVolume.Count);
-            
             var otherGameObject = other.gameObject;
             
             _objectsInVolume.Add(otherGameObject);

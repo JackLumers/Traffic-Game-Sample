@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace TrafficGame.Scripts.Level.CarsSpawn.Car
@@ -8,7 +9,9 @@ namespace TrafficGame.Scripts.Level.CarsSpawn.Car
         [SerializeField] private CarFrontSafeZone _carFrontSafeZone;
 
         private Transform _transform;
-
+        
+        public event Action Destroyed;
+        
         public float Speed { get; set; }
         public bool CanMove { get; set; }
         
@@ -53,6 +56,12 @@ namespace TrafficGame.Scripts.Level.CarsSpawn.Car
         private void OnCollisionEnter(Collision collision)
         {
             CarPresenter.OnViewCollisionEnter(collision);
+        }
+
+        private void OnDestroy()
+        {
+            Destroyed?.Invoke();
+            Destroyed = null;
         }
     }
 }

@@ -69,6 +69,10 @@ namespace TrafficGame.Scripts.Level.CarsSpawn
 
             while (!cancellationToken.IsCancellationRequested)
             {
+                await UniTask.Delay(_spawnDelayMillis, DelayType.DeltaTime, cancellationToken: cancellationToken);
+                
+                if(cancellationToken.IsCancellationRequested) return;
+                
                 var routeIndex = random.Next(_carRoutes.Count);
                 var randomRoute = _carRoutes.ElementAt(routeIndex);
 
@@ -80,10 +84,6 @@ namespace TrafficGame.Scripts.Level.CarsSpawn
                     await SpawnCar(new CarModel(randomRoute.startPoint.position, randomRoute.startPoint.rotation, routeIndex, randomSpeed),
                         cancellationToken);
                 }
-
-                if(cancellationToken.IsCancellationRequested) return;
-
-                await UniTask.Delay(_spawnDelayMillis, DelayType.DeltaTime, cancellationToken: cancellationToken);
             }
         }
         

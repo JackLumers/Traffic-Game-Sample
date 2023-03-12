@@ -17,6 +17,7 @@ namespace TrafficGame.Scripts.Level.CarsSpawn.Car
 
         private Transform _carViewTransform;
         private TrafficLightView _observingTrafficLightView;
+        private CarView _observingCarView;
         private CancellationTokenSource _movingCts;
 
         public static event Action CarCrashed; 
@@ -80,6 +81,7 @@ namespace TrafficGame.Scripts.Level.CarsSpawn.Car
             if (other.TryGetComponent(out CarView carView) &&
                 carView.CarPresenter.CarModel.RoadIndex == CarModel.RoadIndex)
             {
+                SubscribeToOtherCarDestroy(carView);
                 StopMoving(true);
             }
             else if(other.TryGetComponent(out TrafficLightStopZone trafficLightStopZone) && 
@@ -95,6 +97,7 @@ namespace TrafficGame.Scripts.Level.CarsSpawn.Car
             if (other.TryGetComponent(out CarView carView) &&
                 carView.CarPresenter.CarModel.RoadIndex == CarModel.RoadIndex)
             {
+                UnsubscribeFromOtherCarDestroy();
                 StartMoving();
             }
             else if(other.TryGetComponent(out TrafficLightStopZone _))
@@ -115,8 +118,6 @@ namespace TrafficGame.Scripts.Level.CarsSpawn.Car
 
         private void SubscribeToTrafficLight(TrafficLightView trafficLightView)
         {
-            if (trafficLightView == null) return;
-            
             UnsubscribeFromTrafficLight();
             
             _observingTrafficLightView = trafficLightView;
@@ -131,6 +132,24 @@ namespace TrafficGame.Scripts.Level.CarsSpawn.Car
             _observingTrafficLightView.StateChanged -= OnTrafficLightStateChanged;
             
             _observingTrafficLightView = null;
+        }
+
+        private void SubscribeToOtherCarDestroy(CarView carView)
+        {
+            UnsubscribeFromOtherCarDestroy();
+            
+            carView.Destroyed += StartMoving;
+
+            _observingCarView = carView;
+        }
+        
+        private void UnsubscribeFromOtherCarDestroy()
+        {
+            if (_observingCarView == null) return;
+
+            _observingCarView.Destroyed -= StartMoving;
+
+            _observingCarView = null;
         }
 
         private void OnTrafficLightStateChanged(bool isPassing)

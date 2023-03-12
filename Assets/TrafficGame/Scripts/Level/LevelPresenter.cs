@@ -86,7 +86,6 @@ namespace TrafficGame.Scripts.Level
 
         public void OnViewPauseClicked()
         {
-            Debug.Log($"Pause clicked! Current state: {_levelModel.IsPaused}");
             _levelModel.IsPaused = !_levelModel.IsPaused;
         }
 
