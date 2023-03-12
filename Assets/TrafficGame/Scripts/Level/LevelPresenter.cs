@@ -1,5 +1,6 @@
 using System;
 using Cysharp.Threading.Tasks;
+using TrafficGame.Scripts.EventTriggerVolumes;
 using TrafficGame.Scripts.Level.CarsSpawn.Car;
 using TrafficGame.Scripts.Level.TrafficLight;
 using TrafficGame.Scripts.Screens.GameOverScreen;
@@ -15,8 +16,7 @@ namespace TrafficGame.Scripts.Level
         private readonly LevelModel _levelModel;
         private readonly LevelView _levelView;
 
-        private TrafficLightPresenter _firstTrafficLightPresenter;
-        private TrafficLightPresenter _secondTrafficLightPresenter;
+        private TrafficLightPresenter _trafficLightPresenter;
         
         private GameOverScreenPresenter _gameOverScreenPresenter;
 
@@ -59,11 +59,9 @@ namespace TrafficGame.Scripts.Level
 
         private async UniTask InnerInitialize()
         {
-            _firstTrafficLightPresenter = await TrafficLightPresenter.Initialize(_levelView.TrafficLightViewReference, _levelModel.FirstTrafficLightModel);
-            _secondTrafficLightPresenter = await TrafficLightPresenter.Initialize(_levelView.TrafficLightViewReference, _levelModel.SecondTrafficLightModel);
+            _trafficLightPresenter = await TrafficLightPresenter.Initialize(_levelView.TrafficLightViewReference, _levelModel.TrafficLightModel);
 
-            _firstTrafficLightPresenter.SetViewAnchor(_levelView.FirstTrafficLightViewAnchor);
-            _secondTrafficLightPresenter.SetViewAnchor(_levelView.SecondTrafficLightViewAnchor);
+            _trafficLightPresenter.SetViewAnchor(_levelView.TrafficLightViewAnchor);
             
             await _levelView.SpawnCarsFromModels(_levelModel.CarModels);
 
@@ -101,8 +99,7 @@ namespace TrafficGame.Scripts.Level
 
         private void Pause(bool pause)
         {
-            _firstTrafficLightPresenter.BlockViewInput(pause);
-            _secondTrafficLightPresenter.BlockViewInput(pause);
+            _trafficLightPresenter.BlockViewInput(pause);
 
             _levelView.SetPauseVisualState(pause);
             _levelView.EnableRandomCarsSpawning(!pause);
@@ -147,10 +144,12 @@ namespace TrafficGame.Scripts.Level
             }
         }
         
-        public void OnCarTouchesFinishPoint(CarPresenter carPresenter)
+        public void OnCarTouchesFinishPoint(CarFinishVolume finishVolume, CarPresenter carPresenter)
         {
             _levelView.RemoveCar(carPresenter);
-            _levelModel.Score++;
+            
+            if(finishVolume.IsScoring) 
+                _levelModel.Score++;
         }
 
         private void OnCarCrashed()
@@ -162,8 +161,8 @@ namespace TrafficGame.Scripts.Level
 
         public void Dispose()
         {
-            _firstTrafficLightPresenter?.Dispose();
-            _firstTrafficLightPresenter = null;
+            _trafficLightPresenter?.Dispose();
+            _trafficLightPresenter = null;
             
             _gameOverScreenPresenter?.Dispose();
             _gameOverScreenPresenter = null;

@@ -257,7 +257,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2713354692162211367}
   - component: {fileID: 1593907761026708076}
-  - component: {fileID: 3595167390173084866}
+  - component: {fileID: 3221881548072069677}
   m_Layer: 0
   m_Name: CarsEndPoint2
   m_TagString: Finish
@@ -273,7 +273,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1766323586240617762}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.51, z: -13.236004}
+  m_LocalPosition: {x: 0, y: 0.51, z: -14.43}
   m_LocalScale: {x: 0.3, y: 1, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -293,7 +293,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 20, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3595167390173084866
+--- !u!114 &3221881548072069677
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -302,9 +302,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1766323586240617762}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0754e82c36b4c1c80a5f51b83fdfe9b, type: 3}
+  m_Script: {fileID: 11500000, guid: 29d5b3c4a4514af58d03ce24ef93c0b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isScoring: 1
 --- !u!1 &2131104688724127304
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,19 +447,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62c58a90e96946e0b98d2daef71ce5d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _carRoutes:
-  - spawnArea: {fileID: 128499455258202581}
-    startPoint: {fileID: 6805745281842659615}
-  - spawnArea: {fileID: 8429870758547590834}
-    startPoint: {fileID: 6594969501628970631}
-  _carViewReference:
-    m_AssetGUID: 50363992870c8064a821e8feb3c3b34f
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  _spawnDelayMillis: 1000
-  _minCarSpeed: 20
-  _maxCarSpeed: 50
+  _carSpawnAreas:
+  - {fileID: 8795452448234894140}
+  - {fileID: 906983042860414108}
 --- !u!1 &3666315538642360506
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,37 +735,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 0.62
   m_Text: '||'
---- !u!1 &5824575898734838690
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3787002439928902802}
-  m_Layer: 0
-  m_Name: TrafficLightAnchor1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3787002439928902802
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5824575898734838690}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.704, y: 1, z: -1.6950002}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6533897755547948990}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6533897753828176006
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,10 +824,9 @@ MonoBehaviour:
   _scoreText: {fileID: 646109672289334848}
   _carsSpawnController: {fileID: 7715112817853601793}
   _carsFinishPoints:
-  - {fileID: 6403995128949237667}
-  - {fileID: 3595167390173084866}
-  _firstTrafficLightViewAnchor: {fileID: 3787002439928902802}
-  _secondTrafficLightViewAnchor: {fileID: 554996315600978229}
+  - {fileID: 1720301852684768163}
+  - {fileID: 3221881548072069677}
+  _trafficLightViewAnchor: {fileID: 554996315600978229}
   _trafficLightViewReference:
     m_AssetGUID: 74df6e475ca88ef40b9c60576b25e991
     m_SubObjectName: 
@@ -912,9 +871,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3936090914242239956}
-  - {fileID: 3787002439928902802}
   - {fileID: 6594969501628970631}
-  - {fileID: 3024808057561232136}
+  - {fileID: 7616084068149017177}
   m_Father: {fileID: 1691652988515180546}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1030,7 +988,7 @@ GameObject:
   m_Component:
   - component: {fileID: 554996315600978229}
   m_Layer: 0
-  m_Name: TrafficLightAnchor2
+  m_Name: TrafficLightAnchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1096,64 +1054,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 32.36, y: 0.01, z: 30.32}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &7969711753043621729
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3024808057561232136}
-  - component: {fileID: 6734290807365473602}
-  - component: {fileID: 6403995128949237667}
-  m_Layer: 0
-  m_Name: CarsEndPoint1
-  m_TagString: Finish
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
---- !u!4 &3024808057561232136
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7969711753043621729}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.51, z: 13.365}
-  m_LocalScale: {x: 0.3, y: 1, z: 3}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6533897755547948990}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &6734290807365473602
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7969711753043621729}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 20, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6403995128949237667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7969711753043621729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0754e82c36b4c1c80a5f51b83fdfe9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8151122654185029136
 GameObject:
   m_ObjectHideFlags: 0
@@ -1164,7 +1064,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6594969501628970631}
   - component: {fileID: 5308279422481198750}
-  - component: {fileID: 8429870758547590834}
+  - component: {fileID: 8795452448234894140}
   m_Layer: 0
   m_Name: CarsSpawnPoint1
   m_TagString: Untagged
@@ -1185,7 +1085,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6533897755547948990}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!65 &5308279422481198750
 BoxCollider:
@@ -1200,7 +1100,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 8, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8429870758547590834
+--- !u!114 &8795452448234894140
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1209,9 +1109,70 @@ MonoBehaviour:
   m_GameObject: {fileID: 8151122654185029136}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0754e82c36b4c1c80a5f51b83fdfe9b, type: 3}
+  m_Script: {fileID: 11500000, guid: ffccc4ed8e244898860c86256ece1bf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _index: 0
+  _carsSpawningConfig: {fileID: 11400000, guid: 9f76e9a13f413a946b1c770bd200e5b8, type: 2}
+--- !u!1 &8407521831943631129
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7616084068149017177}
+  - component: {fileID: 3249867869035932312}
+  - component: {fileID: 1720301852684768163}
+  m_Layer: 0
+  m_Name: CarsEndPoint1
+  m_TagString: Finish
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &7616084068149017177
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8407521831943631129}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.51, z: 14.63}
+  m_LocalScale: {x: 0.3, y: 1, z: 3}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6533897755547948990}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3249867869035932312
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8407521831943631129}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 20, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1720301852684768163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8407521831943631129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29d5b3c4a4514af58d03ce24ef93c0b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isScoring: 0
 --- !u!1 &8773440764457494573
 GameObject:
   m_ObjectHideFlags: 0
@@ -1222,7 +1183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6805745281842659615}
   - component: {fileID: 4643349333233506752}
-  - component: {fileID: 128499455258202581}
+  - component: {fileID: 906983042860414108}
   m_Layer: 0
   m_Name: CarsSpawnPoint2
   m_TagString: Untagged
@@ -1258,7 +1219,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 8, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &128499455258202581
+--- !u!114 &906983042860414108
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1267,6 +1228,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8773440764457494573}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0754e82c36b4c1c80a5f51b83fdfe9b, type: 3}
+  m_Script: {fileID: 11500000, guid: ffccc4ed8e244898860c86256ece1bf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _index: 1
+  _carsSpawningConfig: {fileID: 11400000, guid: 9f76e9a13f413a946b1c770bd200e5b8, type: 2}

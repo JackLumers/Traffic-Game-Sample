@@ -2,35 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace TrafficGame.Scripts.Reusable
+namespace TrafficGame.Scripts.EventTriggerVolumes
 {
     [RequireComponent(typeof(Collider))]
-    public class EventTriggerVolume : MonoBehaviour
+    public class BaseEventTriggerVolume<T> : MonoBehaviour where T: BaseEventTriggerVolume<T>
     {
         private readonly HashSet<GameObject> _objectsInVolume = new();
-
-        public event Action<GameObject> TriggerEnter;
-        public event Action<GameObject> TriggerExit;
+        
+        public event Action<T, GameObject> TriggerEnter;
+        public event Action<T, GameObject> TriggerExit;
         
         public IReadOnlyCollection<GameObject> ObjectsInVolume => _objectsInVolume;
 
-        private void OnTriggerEnter(Collider other)
+        protected virtual void OnTriggerEnter(Collider other)
         {
             var otherGameObject = other.gameObject;
             
             _objectsInVolume.Add(otherGameObject);
-            TriggerEnter?.Invoke(otherGameObject);
+            TriggerEnter?.Invoke(this as T, otherGameObject);
         }
 
-        private void OnTriggerExit(Collider other)
+        protected virtual void OnTriggerExit(Collider other)
         {
             var otherGameObject = other.gameObject;
             
             _objectsInVolume.Remove(otherGameObject);
-            TriggerExit?.Invoke(otherGameObject);
+            TriggerExit?.Invoke(this as T, otherGameObject);
         }
 
-        private void OnDestroy()
+        protected virtual void OnDestroy()
         {
             TriggerEnter = null;
             TriggerExit = null;

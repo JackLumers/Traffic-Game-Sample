@@ -14,8 +14,7 @@ namespace TrafficGame.Scripts.Level
         [SerializeField] private int _score = 0;
         [SerializeField] private bool _isPaused = false;
         [SerializeField] private List<CarModel> _carModels = new();
-        [SerializeField] private TrafficLightModel _firstTrafficLightModel = new(false);
-        [SerializeField] private TrafficLightModel _secondTrafficLightModel = new(false);
+        [SerializeField] private TrafficLightModel _trafficLightModel = new(false);
 
         public event Action<int> ScoreUpdated;
         
@@ -54,8 +53,7 @@ namespace TrafficGame.Scripts.Level
         }
 
         public List<CarModel> CarModels => _carModels;
-        public TrafficLightModel FirstTrafficLightModel => _firstTrafficLightModel;
-        public TrafficLightModel SecondTrafficLightModel => _secondTrafficLightModel;
+        public TrafficLightModel TrafficLightModel => _trafficLightModel;
 
         public override void ResetToDefaultValues()
         {
@@ -63,8 +61,7 @@ namespace TrafficGame.Scripts.Level
             _score = 0;
             _isPaused = false;
             _carModels = new List<CarModel>();
-            _firstTrafficLightModel = new TrafficLightModel(false);
-            _secondTrafficLightModel = new TrafficLightModel(false);
+            _trafficLightModel = new TrafficLightModel(false);
         }
     }
 }

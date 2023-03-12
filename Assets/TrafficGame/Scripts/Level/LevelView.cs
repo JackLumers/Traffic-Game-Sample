@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using TrafficGame.Scripts.EventTriggerVolumes;
 using TrafficGame.Scripts.Level.CarsSpawn;
 using TrafficGame.Scripts.Level.CarsSpawn.Car;
-using TrafficGame.Scripts.Reusable;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
@@ -17,9 +17,8 @@ namespace TrafficGame.Scripts.Level
         [SerializeField] private Text _pauseButtonText;
         [SerializeField] private Text _scoreText;
         [SerializeField] private CarsSpawnController _carsSpawnController;
-        [SerializeField] private List<EventTriggerVolume> _carsFinishPoints;
-        [SerializeField] private Transform _firstTrafficLightViewAnchor;
-        [SerializeField] private Transform _secondTrafficLightViewAnchor;
+        [SerializeField] private List<CarFinishVolume> _carsFinishPoints;
+        [SerializeField] private Transform _trafficLightViewAnchor;
 
         [SerializeField] private AssetReferenceGameObject _trafficLightViewReference;
         [SerializeField] private AssetReferenceGameObject _gameOverWinViewReference;
@@ -27,8 +26,7 @@ namespace TrafficGame.Scripts.Level
         
         public Camera RenderingCamera => _renderingCamera;
 
-        public Transform FirstTrafficLightViewAnchor => _firstTrafficLightViewAnchor;
-        public Transform SecondTrafficLightViewAnchor => _secondTrafficLightViewAnchor;
+        public Transform TrafficLightViewAnchor => _trafficLightViewAnchor;
         
         public AssetReferenceGameObject TrafficLightViewReference => _trafficLightViewReference;
         public AssetReferenceGameObject GameOverWinViewReference => _gameOverWinViewReference;
@@ -63,15 +61,15 @@ namespace TrafficGame.Scripts.Level
             CarRemoved?.Invoke(carModel);
         }
 
-        private void OnFinishPointTrigger(GameObject triggerObject)
+        private void OnFinishPointTrigger(CarFinishVolume carFinishVolume, GameObject triggerObject)
         {
             if (triggerObject.TryGetComponent(out CarView carView))
             {
-                LevelPresenter.OnCarTouchesFinishPoint(carView.CarPresenter);
+                LevelPresenter.OnCarTouchesFinishPoint(carFinishVolume, carView.CarPresenter);
             }
         }
-        
-        public async UniTask SpawnCarsFromModels(List<CarModel> carModels)
+
+        public async UniTask SpawnCarsFromModels(IEnumerable<CarModel> carModels)
         {
             await _carsSpawnController.SpawnFromModels(carModels, gameObject.GetCancellationTokenOnDestroy());
         }
@@ -98,6 +96,9 @@ namespace TrafficGame.Scripts.Level
         
         private void OnDestroy()
         {
+            CarSpawned = null;
+            CarRemoved = null;
+            
             foreach (var carsFinishPoint in _carsFinishPoints)
             {
                 carsFinishPoint.TriggerEnter -= OnFinishPointTrigger;
